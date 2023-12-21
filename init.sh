@@ -8,7 +8,10 @@ python3 -m venv $venv_name
 source $venv_name/bin/activate
 
 # Step 2: Install dependencies from requirements.txt
-pip install -r requirements.txt
+# pip install -r requirements.txt
+pip install flask
+pip install git+https://github.com/newrelic/newrelic-python-agent@8e17a97c8e4e869a8af200d65727a70b0a10d568
+pip install git+https://github.com/newrelic/nr-openai-observability@staging
 
 # Step 3: Run the Flask app
 #Validate newrelic.ini
