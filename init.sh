@@ -12,6 +12,7 @@ source $venv_name/bin/activate
 pip install flask
 pip install git+https://github.com/newrelic/newrelic-python-agent@8e17a97c8e4e869a8af200d65727a70b0a10d568
 pip install git+https://github.com/newrelic/nr-openai-observability@staging
+pip install boto3
 
 # Step 3: Run the Flask app
 #Validate newrelic.ini
