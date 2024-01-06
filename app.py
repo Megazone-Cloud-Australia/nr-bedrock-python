@@ -6,21 +6,9 @@ import json
 from flask import Flask, request
 from nr_openai_observability import monitor
 
-# Replace 'NEW_RELIC_LICENSE_KEY' with the actual name of your environment variable
-env_variable_name = 'NEW_RELIC_LICENSE_KEY'
-
-# Check if the environment variable exists
-if env_variable_name in os.environ:
-    # Print the value of the environment variable
-    print(f"{env_variable_name}: {os.environ[env_variable_name]}")
-else:
-    print(f"{env_variable_name} not found in environment variables.")
-
-monitor.initialization(
-    application_name="Python AWS Bedrock Server"
-)
-
 bedrock_client = boto3.client('bedrock-runtime', region_name='us-east-1') # Use bedrock from US-EAST-1 as not available in Syd
+
+monitor.initialization()
 
 # Create a Flask web application
 app = Flask(__name__)
