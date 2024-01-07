@@ -1,4 +1,3 @@
-import os
 import boto3
 import json
 
@@ -51,5 +50,5 @@ def prompt():
 
 # Run the application if this script is executed
 if __name__ == '__main__':
-    # Run the app on port 80
-    app.run(host='0.0.0.0', port=80)
+    # Run the app on port 443
+    app.run(host='0.0.0.0', port=443)
