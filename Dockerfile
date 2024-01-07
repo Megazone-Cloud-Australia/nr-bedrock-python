@@ -18,8 +18,8 @@ RUN pip install git+https://github.com/newrelic/newrelic-python-agent@8e17a97c8e
 RUN pip install git+https://github.com/newrelic/nr-openai-observability@staging
 RUN pip install boto3
 RUN pip install newrelic
-# Make port 443 available to the world outside this container
-EXPOSE 443
+# Make port 80 available to the world outside this container
+EXPOSE 80
 
 
 # Run app.py when the container launches
