@@ -13,7 +13,7 @@ COPY . /app
 # Install any needed packages specified in requirements.txt
 # RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install flask
-run pip install flask-cors
+RUN pip install flask-cors
 RUN pip install git+https://github.com/newrelic/newrelic-python-agent@8e17a97c8e4e869a8af200d65727a70b0a10d568
 RUN pip install git+https://github.com/newrelic/nr-openai-observability@staging
 RUN pip install boto3
