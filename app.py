@@ -1,13 +1,13 @@
 import boto3
 import json
-
-# Import the Flask module
+import newrelic.agent
 from flask import Flask, request
 from flask_cors import CORS
 from nr_openai_observability import monitor
 
 bedrock_client = boto3.client('bedrock-runtime', region_name='us-east-1') # Use bedrock from US-EAST-1 as not available in Syd
 
+newrelic.agent.initialize("newrelic.ini")
 monitor.initialization()
 
 # Create a Flask web application
