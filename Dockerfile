@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt --no-deps
 # RUN pip install flask-cors
 # RUN pip install git+https://github.com/newrelic/newrelic-python-agent@8e17a97c8e4e869a8af200d65727a70b0a10d568
 # RUN pip install git+https://github.com/newrelic/nr-openai-observability@staging
-# RUN pip install boto3==1.34.13
+# RUN pip install boto3
 # RUN pip install newrelic
 # Make port 80 available to the world outside this container
 EXPOSE 80
