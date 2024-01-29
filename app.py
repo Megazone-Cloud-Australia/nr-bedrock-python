@@ -32,7 +32,7 @@ def prompt():
             "prompt": data['prompt'], 
             "max_gen_len": 500,  # Set max_gen_len for specific modelId
             "temperature": 0.5,
-            "topP": 0.5
+            "top_p": 0.5
         })
     else:
         body = json.dumps({
