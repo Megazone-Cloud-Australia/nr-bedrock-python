@@ -25,15 +25,25 @@ def hello():
 def prompt():
     data = request.json  # Assuming the incoming data is in JSON format
 
+
+    accept = 'application/json'
+    contentType = 'application/json'
+
     modelId = data.get('modelId', 'ai21.j2-mid-v1') #meta.llama2-13b-chat-v1
 
     if modelId == 'meta.llama2-13b-chat-v1':
         body = json.dumps({
             "prompt": data['prompt'], 
-            "max_gen_len": 500,  # Set max_gen_len for specific modelId
+            "max_gen_len": 200,
             "temperature": 0.5,
-            "top_p": 0.5
+            "top_p": 0.5,
         })
+
+        response = bedrock_client.invoke_model(body=body, modelId=modelId, accept=accept, contentType=contentType)
+
+        response_body = json.loads(response.get('body').read())
+        response_text = response_body.get('generation')
+
     else:
         body = json.dumps({
             "prompt": data['prompt'], 
@@ -42,20 +52,18 @@ def prompt():
             "topP": 0.5
         })
 
-    accept = 'application/json'
-    contentType = 'application/json'
+        response = bedrock_client.invoke_model(
+            body=body, 
+            modelId=modelId, 
+            accept=accept, 
+            contentType=contentType
+        )
 
-    response = bedrock_client.invoke_model(
-        body=body, 
-        modelId=modelId, 
-        accept=accept, 
-        contentType=contentType
-    )
+        response_body = json.loads(response.get('body').read())
 
-    response_body = json.loads(response.get('body').read())
+        # text
+        response_text = response_body.get('completions')[0].get('data').get('text')
 
-    # text
-    response_text = response_body.get('completions')[0].get('data').get('text')
     print(response_text)
     return response_text
 
