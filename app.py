@@ -24,14 +24,24 @@ def hello():
 @app.route('/', methods=['POST'])
 def prompt():
     data = request.json  # Assuming the incoming data is in JSON format
-    body = json.dumps({
-        "prompt": data['prompt'], 
-        "maxTokens": 200,
-        "temperature": 0.5,
-        "topP": 0.5
-    })
 
     modelId = data.get('modelId', 'ai21.j2-mid-v1') #meta.llama2-13b-chat-v1
+
+    if modelId == 'meta.llama2-13b-chat-v1':
+        body = json.dumps({
+            "prompt": data['prompt'], 
+            "max_gen_len": 500,  # Set max_gen_len for specific modelId
+            "temperature": 0.5,
+            "topP": 0.5
+        })
+    else:
+        body = json.dumps({
+            "prompt": data['prompt'], 
+            "maxTokens": 200,  # Default maxTokens for other modelIds
+            "temperature": 0.5,
+            "topP": 0.5
+        })
+
     accept = 'application/json'
     contentType = 'application/json'
 
