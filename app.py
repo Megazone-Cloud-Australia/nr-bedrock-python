@@ -1,10 +1,10 @@
-import boto3
 import json
-import newrelic.agent
 from flask import Flask, request
 from flask_cors import CORS
-from nr_openai_observability import monitor
 
+import boto3
+import newrelic.agent
+from nr_openai_observability import monitor
 
 newrelic.agent.initialize("newrelic.ini")
 monitor.initialization()
@@ -31,7 +31,7 @@ def prompt():
         "topP": 0.5
     })
 
-    modelId = 'ai21.j2-mid-v1'
+    modelId = data.get('modelId', 'ai21.j2-mid-v1') #meta.llama2-13b-chat-v1
     accept = 'application/json'
     contentType = 'application/json'
 
